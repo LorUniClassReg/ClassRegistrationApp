@@ -45,7 +45,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("adminId");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Class", b =>
@@ -84,7 +84,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("classId");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Classes", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Department", b =>
@@ -101,7 +101,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("deptId");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.HumanBeing", b =>
@@ -160,7 +160,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("storedId");
 
-                    b.ToTable("HumanBeings");
+                    b.ToTable("HumanBeings", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Lor", b =>
@@ -176,7 +176,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("lorId");
 
-                    b.ToTable("Lors");
+                    b.ToTable("Lors", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Student", b =>
@@ -215,7 +215,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("studentId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Teacher", b =>
@@ -247,7 +247,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("teacherId");
 
-                    b.ToTable("Teachers");
+                    b.ToTable("Teachers", (string)null);
                 });
 #pragma warning restore 612, 618
         }

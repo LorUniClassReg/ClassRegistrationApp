@@ -7,7 +7,7 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int lorId { get; set; }
-        [ForeignKey("bannerId")]
-        public int bannerFk { get; set; }
+        [ForeignKey("storedId")]
+        public int storedFk { get; set; }
     }
 }

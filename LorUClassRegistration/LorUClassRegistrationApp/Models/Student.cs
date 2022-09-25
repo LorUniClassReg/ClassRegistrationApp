@@ -7,8 +7,8 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int studentId { get; set; }
-        [ForeignKey("bannerId")]
-        public int bannerFk { get; set; }
+        [ForeignKey("storedId")]
+        public int storedFk { get; set; }
         public string major { get; set; } = "undeclared";
         public string minor { get; set; }
         public int semestersCompleted { get; set; }

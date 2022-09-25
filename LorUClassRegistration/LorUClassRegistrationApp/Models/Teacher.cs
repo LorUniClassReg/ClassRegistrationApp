@@ -7,8 +7,8 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int teacherId { get; set; }
-        [ForeignKey("bannerId")]
-        public int bannerFk { get; set; }
+        [ForeignKey("storedId")]
+        public int storedFk { get; set; }
         [ForeignKey("deptId")]
         public int deptFk { get; set; }
         public string role { get; set; } = "Professor";//ie. 'professor', 'chairperson', 'adjunct'

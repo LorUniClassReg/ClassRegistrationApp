@@ -9,7 +9,7 @@ namespace LorUClassRegistrationApp.Models
         [Key]
         public int classId { get; set; }
         [ForeignKey("deptId")]
-        public int departmentFk { get; set; }
+        public int deptFk { get; set; }
         [ForeignKey("classId")]
         public int preReqs { get; set; }
         [Required]
