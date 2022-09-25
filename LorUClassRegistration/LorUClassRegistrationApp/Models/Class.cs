@@ -11,7 +11,9 @@ namespace LorUClassRegistrationApp.Models
         [ForeignKey("deptId")]
         public int deptFk { get; set; }
         [ForeignKey("classId")]
-        public int preReqs { get; set; }
+        public int? preReqs { get; set; }
+        [ForeignKey("storedId")]
+        public int storedFk { get; set; }
         [Required]
         public int level { get; set; }          //100, 200....
         [Required]

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Class>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Teacher Section</h1>
+
+<table class="table table-bordered table-striped" style="width=100%">
+    <thead>
+        <tr>
+            <th>
+                Department
+            </th>
+            <th>
+                Course No.
+            </th>
+            <th>
+                Section
+            </th>
+            <th>
+                Course Title
+            </th>
+            <th>
+                Credit Hours
+            </th>
+            <th>
+                Days
+            </th>
+            <th>
+                Time
+            </th>
+            <th>
+                Teacher
+            </th>
+            <th>
+                Pre-Reqs
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="10%">
+                    @obj.deptFk
+                </td>
+                <td width="10%">
+                    @obj.level
+                </td>
+                <td width="10%">
+                    @obj.section
+                </td>
+                <td width="10%">
+                    @obj.courseTitle
+                </td>
+                <td width="10%">
+                    @obj.creditHours
+                </td>
+                <td width="10%">
+                    @obj.classDays
+                </td>
+                <td width="10%">
+                    @obj.classTime
+                </td>
+                <td width="10%">
+                    @obj.storedFk
+                </td>
+                <td width="10%">
+                    @obj?.preReqs
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
