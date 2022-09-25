@@ -51,7 +51,7 @@ jobs:
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
           
       - name: Restore dependencies
-        run: dotnet restore ClassRegistrationApp
+        run: dotnet restore LorUClassRegistration
           
       - name: Build and analyze
         env:
@@ -60,5 +60,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"LorUniClassReg_ClassRegistrationApp" /o:"loruniclassreg" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build --no-restore ClassRegistrationApp
+          dotnet build --no-restore LorUClassRegistration
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
