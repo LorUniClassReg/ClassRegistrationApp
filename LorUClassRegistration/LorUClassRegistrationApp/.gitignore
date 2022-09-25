@@ -11,6 +11,8 @@ todoList.txt
 Sensitive.cs
 */testAPI/
 
+bin
+obj
 # User-specific files
 *.rsuser
 *.suo
