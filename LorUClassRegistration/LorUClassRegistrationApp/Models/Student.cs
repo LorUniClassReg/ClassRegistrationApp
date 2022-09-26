@@ -7,8 +7,8 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int studentId { get; set; }
-        [ForeignKey("storedId")]
-        public int storedFk { get; set; }
+        public int storedId { get; set; }
+        public HumanBeing StudentInstance { get; set; }
         public string major { get; set; } = "undeclared";
         public string minor { get; set; }
         public int semestersCompleted { get; set; }
@@ -16,5 +16,6 @@ namespace LorUClassRegistrationApp.Models
         public DateTime projectedGraduation { get; set; }
         public int maxCredits { get; set; } = 18;
         public int creditsCompleted { get; set; }
+        public List<Class> classList { get; set; }
     }
 }

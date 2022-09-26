@@ -7,7 +7,7 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int lorId { get; set; }
-        [ForeignKey("storedId")]
-        public int storedFk { get; set; }
+        public int storedId { get; set; }
+        public HumanBeing LorInTheFlesh { get; set; }
     }
 }

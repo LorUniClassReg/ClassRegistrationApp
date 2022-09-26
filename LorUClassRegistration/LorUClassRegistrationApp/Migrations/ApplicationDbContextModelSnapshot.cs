@@ -30,7 +30,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("adminId"), 1L, 1);
 
-                    b.Property<int>("bannerFk")
+                    b.Property<int>("AdminInstancestoredId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("dateStarted")
@@ -40,12 +40,17 @@ namespace LorUClassRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.Property<int>("yearsWorked")
                         .HasColumnType("int");
 
                     b.HasKey("adminId");
 
-                    b.ToTable("Admins", (string)null);
+                    b.HasIndex("AdminInstancestoredId");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Class", b =>
@@ -55,6 +60,15 @@ namespace LorUClassRegistrationApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("classId"), 1L, 1);
+
+                    b.Property<int>("Dept")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PreReqsclassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherstoredId")
+                        .HasColumnType("int");
 
                     b.Property<string>("classDays")
                         .IsRequired()
@@ -70,38 +84,30 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<double>("creditHours")
                         .HasColumnType("float");
 
-                    b.Property<int>("departmentFk")
-                        .HasColumnType("int");
-
                     b.Property<int>("level")
                         .HasColumnType("int");
 
-                    b.Property<int>("preReqs")
+                    b.Property<int?>("preReqId")
                         .HasColumnType("int");
 
                     b.Property<int>("section")
                         .HasColumnType("int");
 
-                    b.HasKey("classId");
-
-                    b.ToTable("Classes", (string)null);
-                });
-
-            modelBuilder.Entity("LorUClassRegistrationApp.Models.Department", b =>
-                {
-                    b.Property<int>("deptId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("storedId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("deptId"), 1L, 1);
+                    b.Property<int?>("studentId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("departmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("classId");
 
-                    b.HasKey("deptId");
+                    b.HasIndex("PreReqsclassId");
 
-                    b.ToTable("Departments", (string)null);
+                    b.HasIndex("TeacherstoredId");
+
+                    b.HasIndex("studentId");
+
+                    b.ToTable("Classes");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.HumanBeing", b =>
@@ -160,7 +166,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     b.HasKey("storedId");
 
-                    b.ToTable("HumanBeings", (string)null);
+                    b.ToTable("HumanBeings");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Lor", b =>
@@ -171,12 +177,17 @@ namespace LorUClassRegistrationApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("lorId"), 1L, 1);
 
-                    b.Property<int>("bannerFk")
+                    b.Property<int>("LorInTheFleshstoredId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("storedId")
                         .HasColumnType("int");
 
                     b.HasKey("lorId");
 
-                    b.ToTable("Lors", (string)null);
+                    b.HasIndex("LorInTheFleshstoredId");
+
+                    b.ToTable("Lors");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Student", b =>
@@ -187,7 +198,7 @@ namespace LorUClassRegistrationApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("studentId"), 1L, 1);
 
-                    b.Property<int>("bannerFk")
+                    b.Property<int>("StudentInstancestoredId")
                         .HasColumnType("int");
 
                     b.Property<int>("creditsCompleted")
@@ -213,9 +224,14 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<int>("semestersCompleted")
                         .HasColumnType("int");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.HasKey("studentId");
 
-                    b.ToTable("Students", (string)null);
+                    b.HasIndex("StudentInstancestoredId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Teacher", b =>
@@ -226,7 +242,10 @@ namespace LorUClassRegistrationApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("teacherId"), 1L, 1);
 
-                    b.Property<int>("bannerFk")
+                    b.Property<int>("Dept")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherInstancestoredId")
                         .HasColumnType("int");
 
                     b.Property<int>("classQty")
@@ -235,19 +254,91 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<DateTime>("dateStarted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deptFk")
-                        .HasColumnType("int");
-
                     b.Property<string>("role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
 
                     b.Property<int>("yearsWorked")
                         .HasColumnType("int");
 
                     b.HasKey("teacherId");
 
-                    b.ToTable("Teachers", (string)null);
+                    b.HasIndex("TeacherInstancestoredId");
+
+                    b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Admin", b =>
+                {
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "AdminInstance")
+                        .WithMany()
+                        .HasForeignKey("AdminInstancestoredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdminInstance");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Class", b =>
+                {
+                    b.HasOne("LorUClassRegistrationApp.Models.Class", "PreReqs")
+                        .WithMany()
+                        .HasForeignKey("PreReqsclassId");
+
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherstoredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LorUClassRegistrationApp.Models.Student", null)
+                        .WithMany("classList")
+                        .HasForeignKey("studentId");
+
+                    b.Navigation("PreReqs");
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Lor", b =>
+                {
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "LorInTheFlesh")
+                        .WithMany()
+                        .HasForeignKey("LorInTheFleshstoredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LorInTheFlesh");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Student", b =>
+                {
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "StudentInstance")
+                        .WithMany()
+                        .HasForeignKey("StudentInstancestoredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StudentInstance");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Teacher", b =>
+                {
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "TeacherInstance")
+                        .WithMany()
+                        .HasForeignKey("TeacherInstancestoredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeacherInstance");
+                });
+
+            modelBuilder.Entity("LorUClassRegistrationApp.Models.Student", b =>
+                {
+                    b.Navigation("classList");
                 });
 #pragma warning restore 612, 618
         }

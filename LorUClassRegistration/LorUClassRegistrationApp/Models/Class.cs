@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using LorUClassRegistrationApp.Enums;
+using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,12 +9,12 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int classId { get; set; }
-        [ForeignKey("deptId")]
-        public int deptFk { get; set; }
-        [ForeignKey("classId")]
-        public int? preReqs { get; set; }
-        [ForeignKey("storedId")]
-        public int storedFk { get; set; }
+        [Required]
+        public Department Dept { get; set; }
+        public int? preReqId { get; set; }
+        public Class? PreReqs { get; set; }
+        public int storedId { get; set; }
+        public HumanBeing Teacher { get; set; }
         [Required]
         public int level { get; set; }          //100, 200....
         [Required]
@@ -26,5 +27,23 @@ namespace LorUClassRegistrationApp.Models
         public string classDays { get; set; }
         [Required]
         public TimeSpan classTime { get; set; }
+
+        public string DeptToString(Department Dept)
+        {
+            Dictionary<Department, string> deptDict = new Dictionary<Department, string>()
+        {
+            {Department.None, "N/A"},
+            {Department.Computer_Science, "COMP"},
+            {Department.Art, "ARTS"},
+            {Department.Music, "MUSC"},
+            {Department.Philosophy, "PHIL"},
+        };
+
+            if (deptDict.ContainsKey(Dept))
+            {
+                return deptDict[Dept];
+            }
+            throw new DeptNotFound();
+        }
     }
 }
