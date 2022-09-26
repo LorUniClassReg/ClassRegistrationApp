@@ -7,7 +7,7 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int adminId { get; set; }
-        public int storedId { get; set; }
+        //public int storedId { get; set; }
         public HumanBeing AdminInstance { get; set; }
         public string role { get; set; } = "Administrator";
         public DateTime dateStarted { get; set; } = DateTime.Now;

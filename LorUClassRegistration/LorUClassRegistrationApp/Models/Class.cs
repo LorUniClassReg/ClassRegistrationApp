@@ -11,10 +11,10 @@ namespace LorUClassRegistrationApp.Models
         public int classId { get; set; }
         [Required]
         public Department Dept { get; set; }
-        public int? preReqId { get; set; }
+        //public int? preReqId { get; set; }
         public Class? PreReqs { get; set; }
-        public int storedId { get; set; }
-        public HumanBeing Teacher { get; set; }
+        //public int storedId { get; set; }
+        public Teacher TeacherInstance { get; set; }
         [Required]
         public int level { get; set; }          //100, 200....
         [Required]
@@ -24,7 +24,7 @@ namespace LorUClassRegistrationApp.Models
         [Required]
         public double creditHours { get; set; }
         [Required]
-        public string classDays { get; set; }
+        public Days classDays { get; set; }
         [Required]
         public TimeSpan classTime { get; set; }
 
@@ -42,6 +42,29 @@ namespace LorUClassRegistrationApp.Models
             if (deptDict.ContainsKey(Dept))
             {
                 return deptDict[Dept];
+            }
+            throw new DeptNotFound();
+        }
+
+        public string DayToString(Days Days)
+        {
+            Dictionary<Days, string> dayzDict = new Dictionary<Days, string>()
+        {
+            {Days.None, "N/A"},
+            {Days.MWF, "M, W, F"},
+            {Days.TTr, "T, Tr"},
+            {Days.MW, "M, W"},
+            {Days.MF, "M, F"},
+            {Days.M, "M"},
+            {Days.T, "T"},
+            {Days.W, "W"},
+            {Days.Tr, "Tr"},
+            {Days.F, "F"}
+        };
+
+            if (dayzDict.ContainsKey(Days))
+            {
+                return dayzDict[Days];
             }
             throw new DeptNotFound();
         }

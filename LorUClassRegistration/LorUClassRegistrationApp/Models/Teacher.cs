@@ -8,7 +8,7 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int teacherId { get; set; }
-        public int storedId { get; set; }
+        //public int storedId { get; set; }
         public HumanBeing TeacherInstance { get; set; }
         [Required]
         public Department Dept { get; set; }

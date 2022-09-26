@@ -7,7 +7,7 @@ namespace LorUClassRegistrationApp.Models
     {
         [Key]
         public int studentId { get; set; }
-        public int storedId { get; set; }
+        //public int storedId { get; set; }
         public HumanBeing StudentInstance { get; set; }
         public string major { get; set; } = "undeclared";
         public string minor { get; set; }

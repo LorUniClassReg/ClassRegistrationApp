@@ -4,6 +4,7 @@ using LorUClassRegistrationApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LorUClassRegistrationApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220926091143_seedingAndFixing")]
+    partial class seedingAndFixing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +42,9 @@ namespace LorUClassRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.Property<int>("yearsWorked")
                         .HasColumnType("int");
 
@@ -64,7 +69,7 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<int?>("PreReqsclassId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherInstanceteacherId")
+                    b.Property<int>("TeacherstoredId")
                         .HasColumnType("int");
 
                     b.Property<int>("classDays")
@@ -83,19 +88,30 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<int>("level")
                         .HasColumnType("int");
 
+                    b.Property<int?>("preReqId")
+                        .HasColumnType("int");
+
                     b.Property<int>("section")
                         .HasColumnType("int");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("studentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("teacherId")
                         .HasColumnType("int");
 
                     b.HasKey("classId");
 
                     b.HasIndex("PreReqsclassId");
 
-                    b.HasIndex("TeacherInstanceteacherId");
+                    b.HasIndex("TeacherstoredId");
 
                     b.HasIndex("studentId");
+
+                    b.HasIndex("teacherId");
 
                     b.ToTable("Classes");
                 });
@@ -193,6 +209,9 @@ namespace LorUClassRegistrationApp.Migrations
                     b.Property<int>("semestersCompleted")
                         .HasColumnType("int");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.HasKey("studentId");
 
                     b.HasIndex("StudentInstancestoredId");
@@ -224,6 +243,9 @@ namespace LorUClassRegistrationApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("storedId")
+                        .HasColumnType("int");
+
                     b.Property<int>("yearsWorked")
                         .HasColumnType("int");
 
@@ -251,9 +273,9 @@ namespace LorUClassRegistrationApp.Migrations
                         .WithMany()
                         .HasForeignKey("PreReqsclassId");
 
-                    b.HasOne("LorUClassRegistrationApp.Models.Teacher", "TeacherInstance")
-                        .WithMany("classList")
-                        .HasForeignKey("TeacherInstanceteacherId")
+                    b.HasOne("LorUClassRegistrationApp.Models.HumanBeing", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherstoredId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -261,9 +283,13 @@ namespace LorUClassRegistrationApp.Migrations
                         .WithMany("classList")
                         .HasForeignKey("studentId");
 
+                    b.HasOne("LorUClassRegistrationApp.Models.Teacher", null)
+                        .WithMany("classList")
+                        .HasForeignKey("teacherId");
+
                     b.Navigation("PreReqs");
 
-                    b.Navigation("TeacherInstance");
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("LorUClassRegistrationApp.Models.Student", b =>
