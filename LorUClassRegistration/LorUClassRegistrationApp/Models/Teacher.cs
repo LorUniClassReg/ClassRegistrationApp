@@ -16,6 +16,7 @@ namespace LorUClassRegistrationApp.Models
         public int classQty { get; set; }
         public DateTime dateStarted { get; set; } = DateTime.Now;
         public int yearsWorked { get; set; }
+        public List<Class> classList { get; set; }
 
         public string DeptToString(Department Dept)
         {
