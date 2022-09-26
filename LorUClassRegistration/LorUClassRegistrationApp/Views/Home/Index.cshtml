@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HumanBeing
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,10 +8,80 @@
         height: 90vh;
         width: 1920px;
         background-color: rgb(250, 237, 205);
-        padding-top: 200px;
+        color: rgb(58, 23, 0, .95);
+        padding-top: 100px;
+        align-items: center;
+    }
+
+    #submit {
+        justify-self: right;
+    }
+
+    #validators {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #button-row {
+        margin-bottom: 20px;
+        margin-right: 25px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-primary {
+        background-color: rgb(163, 115, 85, .7);
+        border-color: rgb(163, 115, 85, .9);
+    }
+
+    .btn-primary:hover {
+        background-color: rgb(163, 115, 85, .5);
+        border-color: rgb(163, 115, 85, .9);
+    }
+
+    .btn-primary:active {
+        background-color: rgb(163, 115, 85, .3);
+        border-color: rgb(163, 115, 85, .9);
+        outline-color: rgb(163, 115, 85, .5), !important;
+        box-shadow: none;
+    }
+
+    .btn-primary:focus {
+        background-color: rgb(163, 115, 85, .3);
+        border-color: rgb(163, 115, 85, .9);
+        outline-color: rgb(163, 115, 85, .5);
+    }
+
+    .btn-primary:visited {
+        background-color: rgb(163, 115, 85, .3);
+        border-color: rgb(163, 115, 85, .9);
+        outline-color: rgb(163, 115, 85, .5), !important;
+        box-shadow:none;
     }
 </style>
-<div class="text-center container" id="main">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center container" style="justify-content: center;" id="main">
+    <row>
+        <h1 class="display-4">Lor U Class Registration</h1>
+    </row>
+    <row id="validators">
+        <div class="card text-bg-light mb-3" style="max-width: 18rem; background-color: rgb(212, 163, 115, .5);">
+            <div class="card-header" style="background-color: rgb(163, 115, 85, .7);">Login</div>
+            <div class="card-body">
+                <h5 class="card-title">Light card title</h5>
+
+                <label for="exampleFormControlTextarea1" class="form-label">Username</label>
+                <input class="form-control form-control-lg" type="text" style="color: white; text-align: center; background-color: rgb(163, 115, 85, .2);" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+
+                <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                <input class="form-control form-control-lg" type="text" style="color: white; text-align: center; background-color: rgb(163, 115, 85, .2);" placeholder=".form-control-lg" aria-label=".form-control-lg example">
+
+                
+            </div>
+            <div id="button-row">
+                <button class="btn-primary" id="submit">Submit</button>
+            </div>
+        </div>
+    </row>
 </div>
