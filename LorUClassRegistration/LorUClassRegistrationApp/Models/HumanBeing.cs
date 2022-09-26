@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using LorUClassRegistrationApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LorUClassRegistrationApp.Models
 {
@@ -22,5 +24,24 @@ namespace LorUClassRegistrationApp.Models
         public bool isAdmin { get; set; } = false;
         public bool isHyperAdmin { get; set; } = false;
         public bool isLor { get; set; } = false;
+
+        /*
+        public HumanBeing GetHumeObjByBanner(int bannerId)
+        {
+            HumanBeing newHume = DbSet<HumanBeing>.FirstOrDefault(newHume => newHume.bannerId == bannerId) ?? throw new Exception("No user with that  bannerId was found."));
+            return newHume;
+        }
+
+        public bool LoginChecker(int bannerId, string password)
+        {
+            HumanBeing humeInstance = new ApplicationDbContext.HumanBeings.getHumeObjByBanner(bannerId);
+
+            if (humeInstance.password == password)
+            {
+                return true;
+            }
+            else { throw new Exception(); }
+        }*/
     }
+
 }

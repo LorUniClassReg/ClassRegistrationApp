@@ -21,19 +21,27 @@ namespace LorUClassRegistrationApp.Models
         public string DeptToString(Department Dept)
         {
             Dictionary<Department, string> deptDict = new Dictionary<Department, string>()
-        {
-            {Department.None, "N/A"},
-            {Department.Computer_Science, "Computer Science"},
-            {Department.Art, "Art"},
-            {Department.Music, "Music"},
-            {Department.Philosophy, "Philosophy"},
-        };
+            {
+                {Department.None, "N/A"},
+                {Department.Computer_Science, "Computer Science"},
+                {Department.Art, "Art"},
+                {Department.Music, "Music"},
+                {Department.Philosophy, "Philosophy"},
+            };
 
             if (deptDict.ContainsKey(Dept))
             {
                 return deptDict[Dept];
             }
             throw new DeptNotFound();
+        }
+
+        public string GetName(Teacher teacher)
+        {
+            string teacherName = teacher.TeacherInstance.legalName;
+            Console.WriteLine(teacher.TeacherInstance.legalName);
+            Console.WriteLine(teacherName);
+            return teacherName;
         }
     }
 }

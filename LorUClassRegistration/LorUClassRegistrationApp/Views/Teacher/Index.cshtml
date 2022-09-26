@@ -57,13 +57,13 @@
                     @obj.creditHours
                 </td>
                 <td width="10%">
-                    @obj.classDays
+                    @obj.DayToString(@obj.classDays)
                 </td>
                 <td width="10%">
                     @obj.classTime
                 </td>
                 <td width="10%">
-                    @obj.TeacherInstance
+                    @obj.TeacherInstance.GetName(@obj.TeacherInstance)
                 </td>
                 <td width="10%">
                     @obj?.PreReqs
